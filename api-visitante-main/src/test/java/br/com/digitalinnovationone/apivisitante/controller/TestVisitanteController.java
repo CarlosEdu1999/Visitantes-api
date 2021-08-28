@@ -100,5 +100,26 @@ public class TestVisitanteController {
                 () -> assertEquals("nome não informado", json.getString("mensagem"))
         );
     }
+    @Test
+    void DeveEnviarRequisicaoParaDeletarVisitanteComSucesso(){
+        var endpoint= "/visitantes";
+        var metodo= "DELETE";
+        var nome= "Carlos";
+        var cpf = "123456789";
 
+        var payload = new VisitanteRequestDto(cpf,nome );
+
+        var response = with()
+                .contentType(ContentType.JSON)
+                .body(payload)
+                .request(metodo,endpoint)
+                .then()
+                .extract()
+                .response();
+        var json = response.jsonPath();
+
+        assertAll("todos os testes",
+                () -> assertEquals(HttpStatus.OK.value(), response.getStatusCode()),
+                () -> assertNotNull(json.getString("nome")));
+    }
 }
