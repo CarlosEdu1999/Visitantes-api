@@ -15,5 +15,9 @@ public class VisitanteValidation {
         Optional.ofNullable(dto.getCpf()).filter(Predicate.not(String::isEmpty)).orElseThrow(CpfInvalidoException::new);
         Optional.ofNullable(dto.getNome()).filter(Predicate.not(String::isEmpty)).orElseThrow(NomeInvalidoException::new);
     }
+    public static void validarDeleteDoVisitante(VisitanteRequestDto dto) {
+        Optional.ofNullable(dto.getCpf()).filter(Predicate.not(String::isEmpty)).orElseThrow(CpfInvalidoException::new);
+        Optional.ofNullable(dto.getNome()).filter(Predicate.not(String::isEmpty)).orElseThrow(NomeInvalidoException::new);
+    }
 
 }
