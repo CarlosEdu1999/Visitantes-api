@@ -26,5 +26,8 @@ public class VisitanteController {
     public List<Visitante> listar() {
         return service.listar();
     }
-
+    @DeleteMapping
+    public Visitante deletar(@RequestBody VisitanteRequestDto dto){
+        return service.deletar(dto);
+    }
 }
