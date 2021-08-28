@@ -28,4 +28,10 @@ public class VisitanteService {
         return repository.findAll();
     }
 
+    public Visitante deletar(VisitanteRequestDto dto){
+        VisitanteValidation.validarDeleteDoVisitante(dto);
+        var id= UUID.randomUUID().toString();
+        Visitante visitante = new Visitante(id,dto.getCpf(),dto.getNome());
+        repository.delete(visitante);
+        return visitante;}
 }
